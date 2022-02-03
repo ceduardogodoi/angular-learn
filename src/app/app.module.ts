@@ -1,23 +1,14 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { registerLocaleData } from '@angular/common';
-import ptBR from '@angular/common/locales/pt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EntryListComponent } from './entries/components/entry-list/entry-list.component';
-
-registerLocaleData(ptBR, 'pt-BR');
+import { TodoListComponent } from './components/todo-list/todo-list.component';
 
 @NgModule({
-  declarations: [AppComponent, EntryListComponent],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [
-    {
-      provide: LOCALE_ID,
-      useValue: 'pt-BR',
-    },
-  ],
+  declarations: [AppComponent, TodoListComponent],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

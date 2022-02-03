@@ -1,9 +1,10 @@
-<header>
-  <h2>Saldo em contas</h2>
-  <h3>{{ balance | currency: "BRL" }}</h3>
-  <h4>Registros: {{ entriesCount }}</h4>
+<p>App component</p>
 
-  <hr />
+<input type="text" placeholder="Add your todo here" [(ngModel)]="newTodo" />
+<button [disabled]="!newTodo.trim()" (click)="addTodo()">Add</button>
 
-  <app-entry-list *ngIf="entriesCount"></app-entry-list>
-</header>
+<p>Todos count: {{ countTodo$ | async }}</p>
+
+<hr />
+
+<app-todo-list></app-todo-list>
