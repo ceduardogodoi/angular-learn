@@ -8,17 +8,19 @@ import { TodoService } from './services/todo.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  newTodo = '';
+  newTodo: string;
 
   countTodo$?: Observable<number>;
 
-  constructor(private readonly todoService: TodoService) {}
+  constructor(private readonly todoService: TodoService) {
+    this.newTodo = '';
+  }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.countTodo$ = this.todoService.getCount();
   }
 
-  addTodo() {
+  addTodo(): void {
     this.todoService.add(this.newTodo);
   }
 }

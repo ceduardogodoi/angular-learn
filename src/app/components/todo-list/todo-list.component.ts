@@ -12,7 +12,7 @@ export class TodoListComponent implements OnInit {
 
   constructor(private readonly todoService: TodoService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.todos$ = this.todoService.getAll();
   }
 }

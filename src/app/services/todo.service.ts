@@ -5,26 +5,31 @@ import { BehaviorSubject, Observable, of, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class TodoService {
-  private readonly todos = ['Buy milk', 'Buy bread'];
-  private readonly todos$ = new BehaviorSubject(this.todos);
+  private readonly todos: string[];
+  private readonly todosStream: BehaviorSubject<string[]>;
 
-  getAll() {
-    return this.todos$.asObservable();
+  constructor() {
+    this.todos = ['Buy milk', 'Buy bread'];
+    this.todosStream = new BehaviorSubject(this.todos);
   }
 
-  add(todo: string) {
+  getAll(): Observable<string[]> {
+    return this.todosStream.asObservable();
+  }
+
+  add(todo: string): void {
     // pushes a new todo to todos array
     this.todos.push(todo);
     // emits the new todos array value to its subscribers
-    this.todos$.next(this.todos);
+    this.todosStream.next(this.todos);
   }
 
-  getCount() {
-    const count$ = new BehaviorSubject(0);
-    this.todos$.subscribe((todos) => {
-      count$.next(todos.length);
+  getCount(): Observable<number> {
+    const countStream = new BehaviorSubject(0);
+    this.todosStream.subscribe((todos) => {
+      countStream.next(todos.length);
     });
 
-    return count$.asObservable();
+    return countStream.asObservable();
   }
 }
