@@ -18,9 +18,7 @@ export class TodoService {
   }
 
   add(todo: string): void {
-    // pushes a new todo to todos array
     this.todos.push(todo);
-    // emits the new todos array value to its subscribers
     this.todosStream.next(this.todos);
   }
 
